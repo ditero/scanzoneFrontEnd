@@ -1,0 +1,18 @@
+<!--
+  Copyright (c) 2015, 2017, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<!-- <p data-bind="text:messageText"></p> -->
+<div class="login-component">
+  <h1>Scan<strong>Zone</strong></h1>
+    <div class="page">
+      <input type="text" placeholder="username" data-bind="value: uName">
+      <oj-input-text id="text-input" data-bind="value: uName"></oj-input-text>
+      <br><br>
+      <input type="password" placeholder="password" data-bind="value: pWord">
+      <br><br>
+      <input type="text" placeholder="AIS url" data-bind="value: aisURL">
+      <br><br>
+      <button type="submit" data-bind="click: token">Login</button>
+    </div>
+</div>
