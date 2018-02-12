@@ -12,5 +12,6 @@ const getToken = function(req, aisURL) {
     console.log(results.userInfo.token);
     return results.userInfo.token
     localStorage.setItem("token", results.userInfo.token);
+    localStorage.setItem("username", results.userInfo.username);
   });
 }

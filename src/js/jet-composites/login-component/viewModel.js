@@ -3,7 +3,7 @@
   The Universal Permissive License (UPL), Version 1.0
 */
 define(
-    ['ojs/ojcore', 'knockout', 'jquery', 'getToken'], function (oj, ko, $) {
+    ['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojrouter', 'getToken'], function (oj, ko, $) {
     'use strict';
 
     function ExampleComponentModel(context) {
@@ -22,6 +22,7 @@ define(
 
         self.token = function () {
           getToken(req, self.aisURL());
+          oj.Router.rootInstance.go('dashboard');
         }
 
 
