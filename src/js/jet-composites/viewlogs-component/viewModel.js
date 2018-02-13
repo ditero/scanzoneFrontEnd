@@ -17,24 +17,51 @@ define(
             self.properties = propertyMap;
             
             //Parse your component properties here 
-            self.nameSearch = ko.observable();
   
-  self.filteredEmployees = ko.pureComputed(function() {
-      var nameSearch = self.nameSearch();
+              var employees = [
+                {id: 101, name: "Beauregard Duke"},
+                {id: 102, name: "Lucas Duke"},
+                {id: 103, name: "Daisy Duke"},
+                {id: 201, name: "Cooter Davenport"},
+                {id: 301, name: "Jefferson Davis Hogg"},
+                {id: 302, name: "Lulu Coltrane Hogg"},
+                {id: 401, name: "Rosco P Coltrane"}
+              ];
+  
+              self.nameSearch = ko.observable();
+              self.userID = ko.observable();
 
-      var findByName = function(empl) {
-        return Lazy(empl.name).contains(nameSearch);
-      };
-  
-      if (!nameSearch) {
-        // no filter criteria so return all employees
-        return employees;
-      }
-      
-      return Lazy(employees)
-        .filter(findByName)
-        .value();
-  });
+              self.filteredEmployees = ko.pureComputed(function() {
+//                  var nameSearch = self.nameSearch();
+//
+//                  var findByName = function(empl) {
+////                      console.log(empl.id)
+////                    return Lazy(empl.name).contains(nameSearch);
+//                       let oupt = Lazy(empl.name).contains(nameSearch);
+//                      console.log(oupt)
+//                  };
+                  
+                  var userIDsearch = self.userID();
+                  
+                  var findByUserID = function(empl) {
+//                      console.log(empl)
+                      let search = Number(userIDsearch)
+                      console.log(search)
+//                      return Lazy(empl.id).contains(search);
+                      let oupt = Lazy(empl.id).contains(userIDsearch);
+                      
+                      console.log(oupt)
+                  }
+z
+                  if (!userIDsearch) {
+                    // no filter criteria so return all employees
+                    return employees;
+                  }
+
+                  return Lazy(employees)
+                    .filter(findByUserID)
+                    .value();
+              });
             
 
         });

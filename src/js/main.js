@@ -32,7 +32,8 @@ requirejs.config(
     'proj4': 'libs/proj4js/dist/proj4-src',
     'css': 'libs/require-css/css',
     'getToken': 'data_call/getToken',
-    'getLogs': 'data_call/getLogs'
+    'getLogs': 'data_call/getLogs',
+//    'Lazy': 'libs/lazy/lazy.min'      
   }
   //endinjector
   ,

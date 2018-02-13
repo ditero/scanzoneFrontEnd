@@ -33,15 +33,15 @@ module.exports = function (grunt) {
  * If a fileList value is specified, it completely replaces the default fileList value defined by JET
  * Example: {cwd: 'app', src: ['**', '!test.js'], dest: 'staging',  rename: function (dest, file) {return renamed path}}
  */
-    // copyCustomLibsToStaging: {
-    //  fileList: [
-    //   {
-    //     cwd:'node_modules/oraclejet/',
-    //     src: ['*'],
-    //     dest: 'web/js/libs/oraclejet'
-    //   }
-    //  ]
-    // }
+//     copyCustomLibsToStaging: {
+//      fileList: [
+//       {
+//         cwd:'node_modules/lazy/',
+//         src: ['*'],
+//         dest: 'web/js/libs/lazy'
+//       }
+//      ]
+//     },
 
 /**
  * # copySrcToStaging

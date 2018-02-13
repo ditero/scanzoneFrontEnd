@@ -6,21 +6,24 @@
 <div class="viewlogs-component">
   <h1>Scan<strong>Zone</strong></h1>
     <div class="page">
-        <input type="search" placeholder="userID">
+<!--        <input type="search" placeholder="userID">-->
+        <input type="text" class="form-control"
+            placeholder="search userID"
+            data-bind="value: userID, valueUpdate:['input']">
         <br><br>
-        <table class="table table-striped">
+          <table>
             <thead>
-              <th>UserID</th>
+              <th>userID</th>
               <th>Login Time</th>
-              <th>Tasks done</th>
+              <th>Tasks Done</th>
               <th>Logout Time</th>
             </thead>
-            <tbody data-bind="">
-              <td data-bind=""></td>
-              <td data-bind=""></td>
+            <tbody data-bind="foreach: filteredEmployees">
+              <td data-bind="text: id"></td>
+              <td data-bind="text: name"></td>
               <td data-bind=""></td>
               <td data-bind=""></td>
             </tbody>
-        </table>
+          </table>
     </div>
 </div>
