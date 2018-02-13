@@ -1,0 +1,23 @@
+viewlogs-component:not(.oj-complete){
+  visibility: hidden;
+}
+
+.viewlogs-component{
+    
+}
+
+.page {
+  background-image: url('http://gdj.graphicdesignjunction.com/wp-content/uploads/2014/05/003+background+pattern+designs.jpg');
+  text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th {
+    background: #999;
+}
+th, td {
+    padding: 15px;
+}
