@@ -20,9 +20,15 @@ define(
         req.username = self.uName();
         req.password = self.pWord();
 
-        self.token = function () {
-          getToken(req, self.aisURL());
-          oj.Router.rootInstance.go('dashboard');
+        self.token = async function () {
+          let func = await getToken(req, self.aisURL());
+            if (localStorage.getItem('token')) {
+                oj.Router.rootInstance.go('dashboard');
+            }
+            else {
+                console.log('Fail')
+            }
+            
         }
 
 
