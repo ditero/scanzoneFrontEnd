@@ -4,12 +4,14 @@
 -->
 <!--<p data-bind="text:messageText"></p>-->
 <div class="viewlogs-component">
-  <h1>Scan<strong>Zone</strong></h1>
-    <div class="page">
+    <h1>Scan<strong>Zone</strong></h1>
+    <hr align="center" width="100%">
+    <h2>User<strong>Logs</strong></h2>
+    <div class="content">
 <!--        <input type="search" placeholder="userID">-->
         <input type="text" class="form-control"
             placeholder="search userID"
-            data-bind="value: userID, valueUpdate:['input']">
+            data-bind="value: nameSearch, valueUpdate:['input']">
         <br><br>
           <table>
             <thead>

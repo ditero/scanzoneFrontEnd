@@ -32,38 +32,36 @@ define(
               self.userID = ko.observable();
 
               self.filteredEmployees = ko.pureComputed(function() {
-//                  var nameSearch = self.nameSearch();
-//
-//                  var findByName = function(empl) {
-////                      console.log(empl.id)
-////                    return Lazy(empl.name).contains(nameSearch);
+                  var nameSearch = self.nameSearch();
+
+                  var findByName = function(empl) {
+//                      console.log(empl.id)
+                    return Lazy(empl.name).contains(nameSearch);
 //                       let oupt = Lazy(empl.name).contains(nameSearch);
 //                      console.log(oupt)
-//                  };
+                  };
                   
-                  var userIDsearch = self.userID();
-                  
-                  var findByUserID = function(empl) {
-//                      console.log(empl)
-                      let search = Number(userIDsearch)
-                      console.log(search)
-//                      return Lazy(empl.id).contains(search);
-                      let oupt = Lazy(empl.id).contains(userIDsearch);
-                      
-                      console.log(oupt)
-                  }
-z
-                  if (!userIDsearch) {
+//                  var userIDsearch = self.userID();
+//                  
+//                  var findByUserID = function(empl) {
+////                      console.log(empl)
+//                      let search = Number(userIDsearch)
+//                      console.log(search)
+////                      return Lazy(empl.id).contains(search);
+//                      let oupt = Lazy(empl.id).contains(userIDsearch);
+//                      
+//                      console.log(oupt)
+//                  }
+
+                  if (!nameSearch) {
                     // no filter criteria so return all employees
                     return employees;
                   }
 
                   return Lazy(employees)
-                    .filter(findByUserID)
+                    .filter(findByName)
                     .value();
               });
-            
-
         });
     };
     

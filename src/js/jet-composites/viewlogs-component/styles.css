@@ -1,12 +1,16 @@
+body {
+    
+}
+
 viewlogs-component:not(.oj-complete){
   visibility: hidden;
 }
 
 .viewlogs-component{
-    
+    text-align: center;
 }
 
-.page {
+.content {
 /*  background-image: url('https://www.welovesolo.com/wp-content/uploads/2014/12/p16o1j9784ht7ph931n5in1olv9-details.jpg');*/
   text-align: center;
 }
