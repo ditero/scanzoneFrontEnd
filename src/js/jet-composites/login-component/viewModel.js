@@ -11,24 +11,54 @@ define(
         self.composite = context.element;
         //Example observable
         self.messageText = ko.observable('Hello from Example Component');
-        self.uName = ko.observable('jdesys');
-        self.pWord = ko.observable('steltixE1');
-        self.aisURL = ko.observable('http://sandbox921.steltix.com');
+        self.uName = ko.observable('');
+        self.pWord = ko.observable('');
+        self.aisURL = ko.observable('http://localhost:3001');
 
         var req = {};
 
-        req.username = self.uName();
-        req.password = self.pWord();
 
         self.token = async function () {
-          let func = await getToken(req, self.aisURL());
-            if (localStorage.getItem('token')) {
-                oj.Router.rootInstance.go('dashboard');
+          req.username = self.uName();
+          req.password = self.pWord();
+
+          $.ajax({
+            url: self.aisURL()+'/scanZone', // "http://localhost:3001/login", // <<- ScanZone API token service
+            type: 'post', // <<- the method that we using
+            data: JSON.stringify(req), // <<- JSON of our request obj
+            contentType: 'application/json', // <<- telling server how we are going to communicate
+            fail: function(xhr, textStatus, errorThrown) {
+
+              console.log(errorThrown, textStatus, xhr); //  <<- log any http errors to the console
+
             }
-            else {
-                console.log('Fail')
+          }).done(function(data, textStatus, xhr) {
+            console.log(data);
+            if (data.role === 'manager') {
+              oj.Router.rootInstance.go('dashboard');
+
+            }else {
+              console.log("Your HTML view is still under development");
             }
-            
+            req = {}
+
+            if (data.hasOwnProperty('userInfo')) { // <<- see example response below
+
+              var token = data.userInfo.token;
+              localStorage.setItem('token', token);
+               document.dispatchEvent(event);
+              // console.log("Login Token: "+token);
+            }
+          });
+
+          // let func = await getToken(req, self.aisURL());
+          //   if (localStorage.getItem('token')) {
+          //       oj.Router.rootInstance.go('dashboard');
+          //   }
+          //   else {
+          //       console.log('Fail')
+          //   }
+
         }
 
 
