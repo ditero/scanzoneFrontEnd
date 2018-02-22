@@ -16,16 +16,21 @@
           <table>
             <thead>
               <th>userID</th>
+              <th>Picker Username</th>
               <th>Login Time</th>
               <th>Tasks Done</th>
               <th>Logout Time</th>
             </thead>
             <tbody data-bind="foreach: filteredEmployees">
-              <td data-bind="text: id"></td>
-              <td data-bind="text: name"></td>
-              <td data-bind=""></td>
-              <td data-bind=""></td>
+              <td data-bind="text: UserId"></td>
+              <td data-bind="text: Picker_Username"></td>
+              <td data-bind="text: Log.Login_Time"></td>
+              <td data-bind="text: Log.Task_Done"></td>
+              <td data-bind="text: Log.Logout_Time"></td>
             </tbody>
           </table>
+        <br>
+        <br>
+        <button type="submit" data-bind="click: logOut">Logout</button>
     </div>
 </div>

@@ -17,51 +17,61 @@ define(
             self.properties = propertyMap;
             
             //Parse your component properties here 
-  
-              var employees = [
-                {id: 101, name: "Beauregard Duke"},
-                {id: 102, name: "Lucas Duke"},
-                {id: 103, name: "Daisy Duke"},
-                {id: 201, name: "Cooter Davenport"},
-                {id: 301, name: "Jefferson Davis Hogg"},
-                {id: 302, name: "Lulu Coltrane Hogg"},
-                {id: 401, name: "Rosco P Coltrane"}
-              ];
-  
-              self.nameSearch = ko.observable();
-              self.userID = ko.observable();
-
-              self.filteredEmployees = ko.pureComputed(function() {
+            
+            var pickerLog;
+                
+            let pickers = new Promise(function(resolve, reject){
+                $.ajax({
+                url: 'http://localhost:3001/manager',
+                type: 'get',
+                contentType: 'application/json',
+                fail: function(xhr, textStatus, errorThrow) { //if the request fail print the error
+                  console.log(xhr, textStatus, errorThrow);
+                }
+              }).done(function(results) { //if successful print the token
+                  resolve(results);
+              });
+            });  
+            
+            pickers.then(function(data) {
+                pickerLog = data;
+                console.log(pickerLog[0].Log)
+            });
+            
+            
+                self.nameSearch = ko.observable();
+                self.userID = ko.observable();
+            
+                self.filteredEmployees = ko.pureComputed(function() {
                   var nameSearch = self.nameSearch();
 
-                  var findByName = function(empl) {
-//                      console.log(empl.id)
-                    return Lazy(empl.name).contains(nameSearch);
-//                       let oupt = Lazy(empl.name).contains(nameSearch);
-//                      console.log(oupt)
+                  var findByName = function(logs) {
+                    return Lazy(logs.Picker_Username).contains(nameSearch);
                   };
-                  
-//                  var userIDsearch = self.userID();
-//                  
-//                  var findByUserID = function(empl) {
-////                      console.log(empl)
-//                      let search = Number(userIDsearch)
-//                      console.log(search)
-////                      return Lazy(empl.id).contains(search);
-//                      let oupt = Lazy(empl.id).contains(userIDsearch);
-//                      
-//                      console.log(oupt)
-//                  }
 
                   if (!nameSearch) {
                     // no filter criteria so return all employees
-                    return employees;
+                    return pickerLog;
                   }
 
-                  return Lazy(employees)
+                  return Lazy(pickerLog)
                     .filter(findByName)
                     .value();
               });
+            
+            $( document ).ready(function() {
+                console.log( "ready!" );
+                self.filteredEmployees()
+            });
+            
+            self.logOut = function(){
+              localStorage.removeItem('token');
+              localStorage.removeItem('username');
+              oj.Router.rootInstance.go('login');
+//                var url = window.location.href;
+//                window.history.go(-window.history.length);
+//                window.location.href = url;
+            }
         });
     };
     

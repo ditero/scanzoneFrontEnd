@@ -5,7 +5,7 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/menue-component/loader'],
  function(oj, ko, $) {
   
     function IncidentsViewModel() {
