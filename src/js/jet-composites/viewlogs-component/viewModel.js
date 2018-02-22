@@ -71,6 +71,7 @@ define(
 //                var url = window.location.href;
 //                window.history.go(-window.history.length);
 //                window.location.href = url;
+                
             }
         });
     };

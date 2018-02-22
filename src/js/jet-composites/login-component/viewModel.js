@@ -33,7 +33,7 @@ define(
                 return false;  
             }
           }).done(function(data, textStatus, xhr) {
-            console.log(data);
+//            console.log(data);
 //              return data
             if (data.role === 'manager') {
 //                console.log('liwa')
