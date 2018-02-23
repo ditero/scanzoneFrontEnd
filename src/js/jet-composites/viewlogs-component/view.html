@@ -3,7 +3,9 @@
   The Universal Permissive License (UPL), Version 1.0
 -->
 <!--<p data-bind="text:messageText"></p>-->
-    <div class="viewlogs-component">
+
+
+<div class="viewlogs-component">
     <h1>Scan<strong>Zone</strong></h1>
     <hr align="center" width="100%">
     <h2>User<strong>Logs</strong></h2>
@@ -20,8 +22,9 @@
               <th>Login Time</th>
               <th>Tasks Done</th>
               <th>Logout Time</th>
+              <th>Logout</th>
             </thead>
-            <tbody data-bind="foreach: filteredEmployees">
+            <tbody data-bind="foreach: pic">
               <td data-bind="text: UserId"></td>
               <td data-bind="text: Picker_Username"></td>
               <td data-bind="text: Log.Login_Time"></td>

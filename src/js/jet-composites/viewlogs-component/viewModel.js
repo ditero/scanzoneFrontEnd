@@ -11,14 +11,37 @@ define(
         self.composite = context.element;
         //Example observable
         self.messageText = ko.observable('Hello from Example Component');
+        
+            var pickerLog;
+        
+        
+                self.nameSearch = ko.observable()
+                self.userID = ko.observable();
+                self.pic = ko.observableArray();
+                
+                self.filteredEmployees = ko.pureComputed(function() {
+                  var nameSearch = self.nameSearch();
+                  var findByName = function(logs) {
+                    return Lazy(logs.Picker_Username).contains(nameSearch);
+                  };
+
+                  if (!nameSearch) {
+                    // no filter criteria so return all employees
+                    return pickerLog;
+                  }
+
+                  return Lazy(pickerLog)
+                    .filter(findByName)
+                    .value();
+              });
+            
 
         context.props.then(function (propertyMap) {
             //Store a reference to the properties for any later use
             self.properties = propertyMap;
             
             //Parse your component properties here 
-            
-            var pickerLog;
+            self.nameSearch();
                 
             let pickers = new Promise(function(resolve, reject){
                 $.ajax({
@@ -36,33 +59,18 @@ define(
             pickers.then(function(data) {
                 pickerLog = data;
                 console.log(pickerLog[0].Log)
+                self.pic(pickerLog)
+                console.log(self.pic())
             });
             
             
-                self.nameSearch = ko.observable();
-                self.userID = ko.observable();
             
-                self.filteredEmployees = ko.pureComputed(function() {
-                  var nameSearch = self.nameSearch();
-
-                  var findByName = function(logs) {
-                    return Lazy(logs.Picker_Username).contains(nameSearch);
-                  };
-
-                  if (!nameSearch) {
-                    // no filter criteria so return all employees
-                    return pickerLog;
-                  }
-
-                  return Lazy(pickerLog)
-                    .filter(findByName)
-                    .value();
-              });
             
-            $( document ).ready(function() {
-                console.log( "ready!" );
-                self.filteredEmployees()
-            });
+
+//            $( document ).ready(function() {
+//                console.log( "ready!" );
+//                self.filteredEmployees()
+//            });
             
             self.logOut = function(){
               localStorage.removeItem('token');
