@@ -15,6 +15,8 @@ define(['knockout', 'jquery'], function (ko, $) {
     $.ajax({
       url: "http://localhost:3001/manager",
       type: 'get',
+      contentType: 'application/json',
+      headers:{'Authorization': sessionStorage.getItem('token')},
       success: function (result) {
         items = result
         let cnt = 0; // var for our rowIndex prop
