@@ -17,39 +17,50 @@ define(
 
         var req = {};
 
-
         self.token = async function () {
           req.username = self.uName();
           req.password = self.pWord();
-
-          $.ajax({
-            url: self.aisURL()+'/scanZone', // "http://localhost:3001/login", // <<- ScanZone API token service
+                    
+            var state = false
+            let resp = await $.ajax({
+            url: self.aisURL() +'/scanZone', // "http://localhost:3001/login", // <<- ScanZone API token service
             type: 'post', // <<- the method that we using
             data: JSON.stringify(req), // <<- JSON of our request obj
             contentType: 'application/json', // <<- telling server how we are going to communicate
+            authorization: 'bearer',
             fail: function(xhr, textStatus, errorThrown) {
 
               console.log(errorThrown, textStatus, xhr); //  <<- log any http errors to the console
-
+                return false;  
             }
-          }).done(function(data, textStatus, xhr) {
-            console.log(data);
-            if (data.role === 'manager') {
+          }).done(function(data, textStatus, xhr, auth) {
+           console.log(auth);
+//              return data
+            if (data.role === 'Manager') {
+//                console.log('liwa')
               oj.Router.rootInstance.go('dashboard');
-
-            }else {
+            } else if (data.role === 'picker') {
               console.log("Your HTML view is still under development");
+            } else if (data.role === 'developer') {
+                console.log('YOU ARE A DEVELOPER')
             }
             req = {}
+            var token = data.token;
+            // console.log(token)
+            sessionStorage.setItem('token', token);
 
             if (data.hasOwnProperty('userInfo')) { // <<- see example response below
 
-              var token = data.userInfo.token;
-              localStorage.setItem('token', token);
+              var token = data.token;
+              // console.log(token)
+              sessionStorage.setItem('token', token);
                document.dispatchEvent(event);
               // console.log("Login Token: "+token);
             }
+                return true
           });
+        }
+            
 
           // let func = await getToken(req, self.aisURL());
           //   if (localStorage.getItem('token')) {
@@ -59,7 +70,6 @@ define(
           //       console.log('Fail')
           //   }
 
-        }
 
 
         context.props.then(function (propertyMap) {

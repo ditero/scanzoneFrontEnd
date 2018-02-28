@@ -5,13 +5,40 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/viewlogs-component/loader'],
- function(oj, ko, $) {
+define(['ojs/ojcore', 'knockout', 'jquery', 'stockdb', 'jet-composites/filter-table/loader', 'jet-composites/viewlogs-component/loader'],
+ function(oj, ko, $, stockdb) {
   
     function DashboardViewModel() {
       var self = this;
       // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additionaly available methods.
+
+        // check ds is initialized
+        self.itemsArray = ko.observable([]);
+        // for web component pattern
+        // data service delivers for filter-table component --- data prop requirements
+  
+  
+        self.itemData = stockdb.getItemsStatic();
+        // self.itemData2 = locdb.getItemsStatic();
+  
+  
+        // ds.init().then(function (data) {
+          // console.log(data)
+          // for JQUERY injection pattern - below in hamdleAttached method
+  
+  
+          // for KO Pattern - fetchdata into observable
+  
+  
+          stockdb.getItemsAPI().then(function (data2) {
+            console.log("DATA"+JSON.stringify(data2.rows))
+            console.log();
+            self.itemsArray(data2.rows);
+  
+          });
+  
+  
 
       /**
        * Optional ViewModel method invoked when this ViewModel is about to be

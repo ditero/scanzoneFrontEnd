@@ -3,29 +3,34 @@
   The Universal Permissive License (UPL), Version 1.0
 -->
 <!--<p data-bind="text:messageText"></p>-->
-<div class="viewlogs-component">
+    <div class="viewlogs-component">
     <h1>Scan<strong>Zone</strong></h1>
     <hr align="center" width="100%">
     <h2>User<strong>Logs</strong></h2>
     <div class="content">
 <!--        <input type="search" placeholder="userID">-->
         <input type="text" class="form-control"
-            placeholder="search userID"
+            placeholder="search username"
             data-bind="value: nameSearch, valueUpdate:['input']">
         <br><br>
           <table>
             <thead>
               <th>userID</th>
+              <th>Picker Username</th>
               <th>Login Time</th>
               <th>Tasks Done</th>
               <th>Logout Time</th>
             </thead>
             <tbody data-bind="foreach: filteredEmployees">
-              <td data-bind="text: id"></td>
-              <td data-bind="text: name"></td>
-              <td data-bind=""></td>
-              <td data-bind=""></td>
+              <td data-bind="text: UserId"></td>
+              <td data-bind="text: Picker_Username"></td>
+              <td data-bind="text: Log.Login_Time"></td>
+              <td data-bind="text: Log.Task_Done"></td>
+              <td data-bind="text: Log.Logout_Time"></td>
             </tbody>
           </table>
+        <br>
+        <br>
+        <button type="submit" data-bind="click: logOut">Logout</button>
     </div>
 </div>

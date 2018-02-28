@@ -3,6 +3,14 @@
   The Universal Permissive License (UPL), Version 1.0
 -->
 <!-- <p data-bind="text:messageText"></p> -->
+<head>
+    <script type = "text/javascript" >
+       function preventBack(){window.history.forward();}
+        setTimeout("preventBack()", 0);
+        window.onunload=function(){null};
+    </script>
+</head>
+
 <div class="login-component">
   <h1>Scan<strong>Zone</strong></h1>
     <div class="page">
